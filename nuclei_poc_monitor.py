@@ -7,7 +7,7 @@ import difflib
 from datetime import datetime
 
 GITHUB_ZIP_URL = "https://github.com/projectdiscovery/nuclei-templates/archive/refs/heads/master.zip"
-CHECK_INTERVAL = 300  # 1 多久一次
+CHECK_INTERVAL = 3600  # 多久一次，这里是1小时
 TEMPLATES_DIR = "nuclei-templates-master"
 POCS_SAVE_DIR = "nuclei_pocs"
 OLD_FILELIST = "old_files.txt"
