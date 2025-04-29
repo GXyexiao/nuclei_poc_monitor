@@ -1,44 +1,11 @@
-nuclei-templates-master文件夹：
+这个脚本自动拉取 nuclei-templates 仓库的最新模板，检测过去24小时内新增或更新的 YAML POC 文件，并将它们提取保存到本地的 nuclei_pocs 文件夹中，供后续增量处理。
 
-内容：从 GitHub 官方下载的完整 nuclei-templates 仓库，也就是所有官方POC模板。
+主要流程：
 
-用途：用来跟之前版本比对，看有没有新模板出现。
+用 Git 克隆或更新官方仓库。
 
-备注：每次更新都会清空这个目录，重新下载一份新的。
+根据 Git 提交历史，筛选最近24小时内新增或更新的 .yaml 文件。
 
+解析每个 YAML 文件中的 id 字段作为新文件名（没有就用原文件名）。
 
-
-nuclei_pocs文件夹：
-
-内容：本次新增的POC模板文件。
-
-命名规则：用POC里提取到的 id 字段作为文件名；如果没有id，就用原来的yaml文件名。
-
-用途：这里保存的是筛选后的真正新增POC，后续增量处理就直接拿这里的文件用。
-
-
-
-old_files.txt：
-
-内容：记录上一次检测时，完整的POC文件路径列表（有哪些POC）。
-
-用途：为了下次对比新增用。
-
-备注：如果这个文件丢了，下一次运行会把所有POC都当作新增（所以正常不要删它）。
-
-templates.zip：
-
-nuclei-templates 仓库下载时，GitHub提供的打包版压缩文件。
-
-如发现目录中存在 templates.zip，一般是下载完成但未解压所致（如脚本中途被终止）。可直接手动删除，无需担心。
-
-总结：
-
-nuclei-templates-master 是临时下载源（每次更新清空）
-
-nuclei_pocs 是新增POC保存区（你真正关心的内容）
-
-old_files.txt 是历史记录文件（辅助比对新增）
-
-templates.zip 是临时压缩文件，下载后若遗留手动删除即可
-
+把筛选出的 POC 文件复制到 nuclei_pocs 文件夹保存。
